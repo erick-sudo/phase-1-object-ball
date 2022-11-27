@@ -118,9 +118,9 @@ function gameObject(){
 }
 
 function numPointsScored(playerName){
-    const game = gameObject()
-    for(const team in game){
-        for(const player in game[team]["players"]){
+    const myGameObject = gameObject()
+    for(const team in myGameObject){
+        for(const player in myGameObject[team]["players"]){
           if(player === playerName){
             return game[team]["players"][player]["points"]
           }
@@ -128,10 +128,10 @@ function numPointsScored(playerName){
     }
 }
 
-function shoeSize(playerName){
-    const game = gameObject();
-    for(const team in game){
-        for(const player in game[team]["players"]){
+function shmyGameObjectze(playerName){
+    const myGameObject = gameObject();
+    for(const team in myGameObject){
+        for(const player in myGameObject[team]["players"]){
           if(player === playerName){
             return game[team]["players"][player]["shoe"]
           }
@@ -140,31 +140,31 @@ function shoeSize(playerName){
 }
 
 function teamColors(teamName) {
-    const game = gameObject()
-    for(const team in game){
-        if(game[team].teamName === teamName){
-            return game[team]["colors"]
+    const myGameObject = gameObject()
+    for(const team in myGameObject){
+        if(myGameObject[team].teamName === teamName){
+            return myGameObject[team]["colors"]
         }
     }
 }
 
 function teamNames() {
-    const game = gameObject()
+    const myGameObject = gameObject()
     let names = []
-    for(const team in game){
-        names.push(game[team].teamName)
+    for(const team in myGameObject){
+        names.push(myGameObject[team].teamName)
     }
 
     return names
 }
 
 function playerNumbers(teamName){
-    const game = gameObject()
+    const myGameObject = gameObject()
     let jerseyNumbers = []
-    for(const team in game){
-        if(game[team].teamName === teamName){
-            for(const player in game[team]["players"]){
-                jerseyNumbers.push(game[team]["players"][player].number)
+    for(const team in myGameObject){
+        if(myGameObject[team].teamName === teamName){
+            for(const player in myGameObject[team]["players"]){
+                jerseyNumbers.push(myGameObject[team]["players"][player].number)
             }
             return jerseyNumbers
         }
@@ -172,22 +172,22 @@ function playerNumbers(teamName){
 }
 
 function playerStats(playerName){
-    const game = gameObject();
-    for(const team in game){
-        for(const player in game[team]["players"]){
+    const myGameObject = gameObject();
+    for(const team in myGameObject){
+        for(const player in myGameObject[team]["players"]){
           if(player === playerName){
-            return game[team]["players"][player]
+            return myGameObject[team]["players"][player]
           }
         }
     }
 }
 
 function bigShoeRebounds(){
-    const game = gameObject();
+    const myGameObject = gameObject();
     let playerWithLargestShoeSize = ""
     let largestShoeSize = 0
-    for(const team in game){
-        for(const player in game[team]["players"]){
+    for(const team in myGameObject){
+        for(const player in myGameObject[team]["players"]){
           if(shoeSize(player)>largestShoeSize){
             largestShoeSize = shoeSize(player)
             playerWithLargestShoeSize = player
@@ -199,11 +199,11 @@ function bigShoeRebounds(){
 }
 
 function mostPointsScored(){
-    const game = gameObject()
+    const myGameObject = gameObject()
     let mostPointsScored = 0
     let playerWithMostPointsScored = ""
-    for(const team in game){
-        for(const player in game[team]["players"]){
+    for(const team in myGameObject){
+        for(const player in myGameObject[team]["players"]){
           if(playerStats(player).points>mostPointsScored){
                 mostPointsScored = playerStats(player).points
                 playerWithMostPointsScored = player
@@ -215,18 +215,18 @@ function mostPointsScored(){
 }
 
 function winningTeam(){
-    const game = gameObject()
+    const myGameObject = gameObject()
     let mostPoints = 0
     let teamWithMostPoints = ""
-    for(const team in game){
+    for(const team in myGameObject){
         let points = 0
-        for(const player in game[team]["players"]){
+        for(const player in myGameObject[team]["players"]){
           points+=playerStats(player).points
         }
         console.log(points)
         if(points>mostPoints){
             mostPoints = points
-            teamWithMostPoints = game[team].teamName
+            teamWithMostPoints = myGameObject[team].teamName
         }
     }
 
@@ -234,30 +234,30 @@ function winningTeam(){
 }
 
 function playerWithLongestName(){
-    const game = gameObject()
-    let L = 0
-    let playerL = ""
+    const myGameObject = gameObject()
+    let longestLength = 0
+    let longestNamePlayer = ""
 
-    for(const team in game){
-        for(const player in game[team]["players"]){
-            if(player.length > L){
-                L = player.length
-                playerL = player
+    for(const team in myGameObject){
+        for(const player in myGameObject[team]["players"]){
+            if(player.length > longestLength){
+                longestLength = player.length
+                longestNamePlayer = player
             }
         }
     }
 
-    return playerL
+    return longestNamePlayer
 }
 
 function doesLongNameStealATon(){
-    const game = gameObject()
+    const myGameObject = gameObject()
     let mostSteals = 0
     let playerWithMostSteals = ""
-    let playerL = playerWithLongestName()
+    let longestNamePlayer = playerWithLongestName()
 
-    for(const team in game){
-        for(const player in game[team]["players"]){
+    for(const team in myGameObject){
+        for(const player in myGameObject[team]["players"]){
             if(playerStats(player).steals > mostSteals){
                 mostSteals = playerStats(player).steals
                 playerWithMostSteals = player
@@ -265,7 +265,7 @@ function doesLongNameStealATon(){
         }
     }
 
-    return playerL===playerWithMostSteals
+    return longestNamePlayer===playerWithMostSteals
 }
 
 //console.log(doesLongNameStealATon())
